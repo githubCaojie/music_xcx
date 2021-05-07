@@ -8,6 +8,7 @@ Page({
     bannerList: [], // 轮播图数据
     recommendList: [], // 推荐歌单数据
     topList: [], // 排行榜数据
+    thisDate: 0
   },
 
   /**
@@ -15,9 +16,11 @@ Page({
    */
   onLoad: async function (options) {
     // 获取banner数据
-    let bannerListData = await request('/banner', {type: 2})
+    let bannerListData = await request('/banner', {type: 2});
     // 获取推荐歌单数据
-    let recommendListData = await request('/personalized', {limit: 10})
+    let recommendListData = await request('/personalized', {limit: 10});
+    // 获取当前日
+    let thisDate = new Date().getDate();
     // 获取排行榜数据
     /*
     * 需求分析：
@@ -29,23 +32,24 @@ Page({
     *   2. 如果先看到的运算符就先运算再赋值
     *   3. 如果先看到的值那么就先赋值再运算
     */
-   let topArr = await request('/toplist');
-   let resyltArr = [];
-   for(let i in topArr.list) {
-     if(i < 5){
-      let topListData = await request('/playlist/detail', {id: topArr.list[i].id});
-      if(topListData.code === 200) {
-        let topListItem = {name: topListData.playlist.name, tracks: topListData.playlist.tracks.slice(0, 3)}
-        resyltArr.push(topListItem)
-        this.setData({
-          topList: resyltArr
-        })
+    let topArr = await request('/toplist');
+    let resyltArr = [];
+    for(let i in topArr.list) {
+      if(i < 5){
+        let topListData = await request('/playlist/detail', {id: topArr.list[i].id});
+        if(topListData.code === 200) {
+          let topListItem = {name: topListData.playlist.name, tracks: topListData.playlist.tracks.slice(0, 3)}
+          resyltArr.push(topListItem)
+          this.setData({
+            topList: resyltArr
+          })
+        }
       }
-     }
-   };
+    };
     this.setData({
       bannerList: bannerListData.banners,
       recommendList: recommendListData.result,
+      thisDate
     })
   },
 

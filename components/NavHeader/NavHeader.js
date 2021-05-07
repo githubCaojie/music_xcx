@@ -7,10 +7,6 @@ Component({
     title: {
       type: String,
       value: '我是默认值'
-    },
-    nav: {
-      type: String,
-      value: '我是默认值'
     }
   },
 

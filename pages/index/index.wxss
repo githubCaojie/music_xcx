@@ -1,61 +1,110 @@
 /* 轮播图区域 */
+.indexView {
+  padding-bottom: 20rpx;
+}
 .banners {
-  width: 100%;
-  height: 300rpx;
+  width: 750rpx;
+  height: 276rpx;
+  margin-top: 20rpx;
+  position: relative;
 }
 
 .banners image {
-  width: 100%;
-  height: 100%;
+  width: 710rpx;
+  height: 276rpx;
+  padding: 0 20rpx;
+}
+.banners .table {
+  position: absolute;
+  bottom: 0;
+  right: 20rpx;
+  color: #fff;
+  font-size: 22rpx;
+  padding: 5rpx 10rpx;
 }
 
 /* 图标导航区域 */
 .navContainer {
   display: flex;
+  height: 150rpx;
+  padding: 20rpx;
 }
+.navScroll {
+  display: flex;
+  height: 150rpx;
+} 
 
 .navItem {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 20%;
+  width: 200rpx;
+  margin-right: 20rpx;
 }
 
-.navItem .iconfont {
+.navItem text.iconfont {
   width: 100rpx;
   height: 100rpx;
   border-radius: 50%;
   text-align: center;
   line-height: 100rpx;
-  background: rgb(240, 19, 19);
+  background: #fff2f2;
   font-size: 50rpx;
+  color: #ff4341;
+  margin: 0 0 20rpx;
+  position: relative;
+}
+.navItem text.iconfont .date {
+  position: absolute;
   color: #fff;
-  margin: 20rpx 0
+  top: 7rpx;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  font-size: 21rpx;
 }
 
-.navItem text {
-  font-size: 26rpx;
+.navItem text.name {
+  height: 30rpx;
+  line-height: 30rpx;
+  font-size: 25rpx;
 }
 
 /* 推荐歌曲区域 */
-.recommenContainer {
-  padding: 20rpx;
-}
 
 /* 推荐内容区域 */
 .recommendScroll {
   display: flex;
   height: 300rpx;
+  background: #fff;
 }
 .scrollItem {
   width: 200rpx;
   margin-right: 20rpx;
+}
+.scrollItem:last-child {
+  padding-right: 20rpx;
+}
+.scrollItem:first-child {
+  padding-left: 20rpx;
 }
 
 .scrollItem image {
   width: 200rpx;
   height: 200rpx;
   border-radius: 10rpx;
+  position: relative;
+}
+.scrollItem image .playCount {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: #9a7f62;
+  color: #fff;
+  display: flex;
+  flex-flow: nowrap;
+  justify-items: center;
 }
 
 .scrollItem text {
@@ -76,19 +125,29 @@
 
 /* 排行榜区域 */
 .topList {
-  padding: 20rpx;
+  background: #fff;
 }
-
 .topListSwiper {
-  height: 400rpx;
+  height: 420rpx;
 }
 
 .swiperItem {
-  width: 96%;
+  padding-left: 20rpx;
 }
 
 .swiperItem .title {
   font-size: 30rpx;
+  line-height: 80rpx;
+  display: flex;
+  flex-flow: nowrap;
+  align-items: center;
+  justify-content: center;
+  color: #343436;
+  font-weight: 600;
+}
+
+.swiperItem .title .iconfont {
+  font-size: 26rpx;
   line-height: 80rpx;
 }
 

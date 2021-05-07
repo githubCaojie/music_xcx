@@ -1,43 +1,69 @@
 <!--pages/index/index.wxml-->
-<view>
+<view class="indexView">
   <!-- 轮播图区域 -->
-  <swiper class="banners" indicator-dots indicator-color="ivory" indicator-active-color="#d43c33">
+  <swiper class="banners" indicator-dots indicator-color="ivory" indicator-color="#748d87" indicator-active-color="#f9fafc">
     <swiper-item wx:for="{{bannerList}}" wx:key="bannerId" wx:for-item="bannerItem">
       <image src="{{bannerItem.pic}}"></image>
+      <text class="table" style="background:{{bannerItem.titleColor}}">{{bannerItem.typeTitle}}</text>
     </swiper-item>
   </swiper>
 
   <!-- 图标导航区域 -->
   <view class="navContainer">
-    <view class="navItem" bindtap="toRecommentSong">
-      <text class="iconfont icon-meirituijian"></text>
-      <text>每日推荐</text>
-    </view>
-    <view class="navItem">
-      <text class="iconfont icon-gedan1"></text>
-      <text>歌单</text>
-    </view>
-    <view class="navItem">
-      <text class="iconfont icon-icon-ranking"></text>
-      <text>排行榜</text>
-    </view>
-    <view class="navItem">
-      <text class="iconfont icon-diantai"></text>
-      <text>电台</text>
-    </view>
-    <view class="navItem">
-      <text class="iconfont icon-zhiboguankanliangbofangsheyingshexiangjixianxing"></text>
-      <text>直播</text>
-    </view>
+    <scroll-view class="navScroll" enable-flex scroll-x>
+      <view class="navItem" bindtap="toRecommentSong">
+        <text class="iconfont icon-meirituijian1">
+          <text class="date">{{thisDate}}</text>
+        </text>
+        <text class="name">每日推荐</text>
+      </view>
+      <view class="navItem">
+        <text class="iconfont icon-sirenFM"></text>
+        <text class="name">私人FM</text>
+      </view>
+      <view class="navItem">
+        <text class="iconfont icon-gedan"></text>
+        <text class="name">歌单</text>
+      </view>
+      <view class="navItem">
+        <text class="iconfont icon-paihangbang"></text>
+        <text class="name">排行榜</text>
+      </view>
+      <view class="navItem">
+        <text class="iconfont icon-zhibobofangshexiangjitianxianmianxing"></text>
+        <text class="name">直播</text>
+      </view>
+      <view class="navItem">
+        <text class="iconfont icon-mingxiang"></text>
+        <text class="name">专注冥想</text>
+      </view>
+      <view class="navItem">
+        <text class="iconfont icon-pic3"></text>
+        <text class="name">数字专辑</text>
+      </view>
+      <view class="navItem">
+        <text class="iconfont icon-huatongKTVmaikefengchanggemianxing"></text>
+        <text class="name">歌房</text>
+      </view>
+      <view class="navItem">
+        <text class="iconfont icon-youxi"></text>
+        <text class="name">游戏专区</text>
+      </view>
+    </scroll-view>
   </view>
 
   <!-- 推荐歌曲区域 -->
   <view class="recommenContainer">
-    <NavHeader title="推荐歌曲" nav="为你精心推荐"></NavHeader>
+    <NavHeader title="推荐歌单"></NavHeader>
     <!-- 内容区域 -->
     <scroll-view class="recommendScroll" enable-flex scroll-x>
       <view class="scrollItem" wx:for="{{recommendList}}" wx:key="id" wx:for-item="recommendItem">
-        <image src="{{recommendItem.picUrl}}"></image>
+        <image src="{{recommendItem.picUrl}}">
+          <view class="playCount">
+            <text class="iconfont icon-bofang"></text>
+            {{recommendItem.playCount}}
+          </view>
+        </image>
         <text>{{recommendItem.name}}</text>
       </view>
     </scroll-view>
@@ -45,10 +71,13 @@
 
   <!-- 排行榜区域 -->
   <view class="topList">
-    <NavHeader title="排行榜" nav="热歌风向标"></NavHeader>
+    <NavHeader title="排行榜"></NavHeader>
     <swiper class="topListSwiper" circular next-margin="50rpx">
-      <swiper-item wx:for="{{topList}}" wx:key="name" wx:for-item="topItem">
-        <view class="title">{{topItem.name}}</view>
+      <swiper-item class="swiperItem" wx:for="{{topList}}" wx:key="name" wx:for-item="topItem">
+        <view class="title">
+          {{topItem.name}}
+          <text class="iconfont icon-gengduo"></text>
+        </view>
         <view class="musicItem" wx:for="{{topItem.tracks}}" wx:key="id" wx:for-item="musicItem">
           <image src="{{musicItem.al.picUrl}}"></image>
           <text class="count">{{index + 1}}</text>

@@ -1,8 +1,8 @@
 <!--components/NavHeader/NavHeader.wxml-->
 <view class="header">
-  <text class="title">{{title}}</text>
-  <view>
-    <text>{{nav}}</text>
-    <text class="more">查看更多</text>
+  <view class="title">{{title}}</view>
+  <view class="more">
+    更多
+    <text class="iconfont icon-gengduo"></text>
   </view>
 </view>

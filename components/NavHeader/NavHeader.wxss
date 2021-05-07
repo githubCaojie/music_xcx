@@ -1,18 +1,31 @@
 /* components/NavHeader/NavHeader.wxss */
+@import "/static/iconfont/iconfont.wxss"
 .header {
-  padding-bottom: 20rpx;
+  display: flex;
+  flex-flow: nowrap;
+  justify-content: space-between;
+  padding: 20rpx;
+  background: #fff;
 }
 
 .header .title {
   font-size: 32rpx;
-  line-height: 80rpx;
-  color: #666;
+  color: #202020;
+  font-weight: 600; 
+  line-height: 50rpx;
 }
 
 .header .more {
-  float: right;
-  border: 1rpx solid #333;
-  padding: 10rpx 20rpx;
   font-size: 26rpx;
+  line-height: 40rpx;
+  height: 40rpx;
+  color: #202020;
+  border: 1rpx solid #e7e7e7;
+  padding: 5rpx 15rpx;
   border-radius: 30rpx;
+  display: flex;
+  align-items: center;
+}
+.more .iconfont {
+  font-size: 22rpx;
 }
