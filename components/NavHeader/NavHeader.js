@@ -7,6 +7,10 @@ Component({
     title: {
       type: String,
       value: '我是默认值'
+    },
+    rightText: {
+      type: String,
+      value: '我是默认值'
     }
   },
 

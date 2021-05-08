@@ -1,4 +1,5 @@
 <!--pages/index/index.wxml-->
+<wxs src="/utils/filters.wxs" module="filters"></wxs>
 <view class="indexView">
   <!-- 轮播图区域 -->
   <swiper class="banners" indicator-dots indicator-color="ivory" indicator-color="#748d87" indicator-active-color="#f9fafc">
@@ -54,24 +55,30 @@
 
   <!-- 推荐歌曲区域 -->
   <view class="recommenContainer">
-    <NavHeader title="推荐歌单"></NavHeader>
+    <NavHeader title="推荐歌单" rightText='更多'></NavHeader>
     <!-- 内容区域 -->
     <scroll-view class="recommendScroll" enable-flex scroll-x>
-      <view class="scrollItem" wx:for="{{recommendList}}" wx:key="id" wx:for-item="recommendItem">
+      <view
+        class="scrollItem"
+        wx:for="{{recommendList}}"
+        wx:key="id"
+        wx:for-item="recommendItem"
+        data-id="{{recommendItem.id}}"
+        bindtap="getRecommendContainer"
+      >
         <image src="{{recommendItem.picUrl}}">
           <view class="playCount">
-            <text class="iconfont icon-bofang"></text>
-            {{recommendItem.playCount}}
+            <text class="iconfont icon-bofangsanjiaoxing"></text>
+            {{filters.toFix(recommendItem.playCount)}}
           </view>
         </image>
         <text>{{recommendItem.name}}</text>
       </view>
     </scroll-view>
   </view>
-
   <!-- 排行榜区域 -->
   <view class="topList">
-    <NavHeader title="排行榜"></NavHeader>
+    <NavHeader title="排行榜" rightText='更多'></NavHeader>
     <swiper class="topListSwiper" circular next-margin="50rpx">
       <swiper-item class="swiperItem" wx:for="{{topList}}" wx:key="name" wx:for-item="topItem">
         <view class="title">

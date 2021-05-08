@@ -1,0 +1,30 @@
+<!--pages/recommendContainer/recommendContainer.wxml-->
+<view>
+  <view class="header">
+    <view class="bg" style="background-image: url({{recommendContainerDetail.coverImgUrl}})"></view>
+    <image class="recommentImg" src="{{recommendContainerDetail.coverImgUrl}}"></image>
+    <view class="recommentContent">
+      <text class="tiele">{{recommendContainerDetail.name}}</text>
+      <text class="name">{{recommendContainerDetail.creator.nickname}}</text>
+    </view>
+  </view>
+  
+   <!-- 列表 -->
+  <view class="listContainer">
+    <view class="listHeader">
+       <text>播放全部</text>
+       <text class="changeMore">多选</text>
+     </view>
+     <!-- 内容 -->
+     <scroll-view scroll-y class="listScroll">
+      <view class="scrollItem" wx:for="{{recommendContainerDetail.tracks}}" wx:key="item.id">
+        <image src="{{item.al.picUrl}}"></image>
+        <view class="musicInfo">
+          <text class="musicName">{{item.name}}</text>
+          <text class="author">{{item.ar[0].name}}</text>
+        </view>
+        <text class="iconfont icon-bofang1"></text>
+      </view>
+     </scroll-view>
+  </view>
+</view>

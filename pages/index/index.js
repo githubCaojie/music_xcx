@@ -1,6 +1,5 @@
 import request from '../../utils/request'
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -21,6 +20,8 @@ Page({
     let recommendListData = await request('/personalized', {limit: 10});
     // 获取当前日
     let thisDate = new Date().getDate();
+    // 获取音乐日历
+    let musicCalendarData = await request('/calendar');
     // 获取排行榜数据
     /*
     * 需求分析：
@@ -49,6 +50,7 @@ Page({
     this.setData({
       bannerList: bannerListData.banners,
       recommendList: recommendListData.result,
+      musicCalendar: musicCalendarData.data.calendarEvents,
       thisDate
     })
   },
@@ -56,6 +58,14 @@ Page({
   toRecommentSong() {
     wx.navigateTo({
       url: '/pages/recommendSong/recommendSong',
+    })
+  },
+
+  // 跳转到歌单详情
+  getRecommendContainer(event) {
+    let id = event.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '/pages/recommendContainer/recommendContainer?id=' + id,
     })
   },
 

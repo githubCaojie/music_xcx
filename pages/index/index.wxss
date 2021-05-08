@@ -98,13 +98,16 @@
 }
 .scrollItem image .playCount {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 10rpx;
+  right: 10rpx;
   background: #9a7f62;
   color: #fff;
   display: flex;
   flex-flow: nowrap;
   justify-items: center;
+  font-size: 22rpx;
+  padding: 2rpx 10rpx;
+  border-radius: 16rpx;
 }
 
 .scrollItem text {

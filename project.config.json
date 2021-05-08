@@ -87,6 +87,13 @@
         {
           "name": "pages/search/search",
           "pathName": "pages/search/search",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "歌单列表",
+          "pathName": "pages/recommendContainer/recommendContainer",
+          "query": "id=6746757292",
           "scene": null
         }
       ]

@@ -2,10 +2,10 @@
 <view class="recommendSongContainer">
    <!-- 头部 -->
    <view class="header">
-    <image src="/static/images/recommendSong/recommendSong.jpg"></image>
+    <image mode="aspectFill" src="{{recommendList[0].al.picUrl}}"></image>
     <view class="date">
-      <text class="day">{{day}}/</text>
-      <text class="month">{{month}}</text>
+      <text class="day">{{day}}</text>
+      <text class="month"> / {{month}}</text>
     </view>
    </view>
 
@@ -20,10 +20,13 @@
        <view class="scrollItem" wx:for="{{recommendList}}" wx:key="id" data-index="{{index}}" data-song="{{item}}" bindtap="toSongDetail">
          <image src="{{item.al.picUrl}}"></image>
          <view class="musicInfo">
-           <text class="musicName">{{item.name}}</text>
-           <text class="author">{{item.ar[0].name}}</text>
+           <view class="musicName">
+             {{item.name}}
+             <text wx:if="{{item.recommendReasons}}">{{item.recommendReasons}}</text>
+            </view>
+           <text class="author">{{item.ar[0].name}} - {{item.al.name}}</text>
          </view>
-         <text class="iconfont icon-gengduo"></text>
+         <text class="iconfont icon-bofang1"></text>
        </view>
      </scroll-view>
    </view>

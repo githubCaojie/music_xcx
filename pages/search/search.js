@@ -11,13 +11,16 @@ Page({
     hotList: [], // 热搜榜
     searchContent: '', // 表单项内容
     searchList: [], // 匹配到的数据
+    historyList: [], // 搜索历史记录
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getInitData()
+    this.getInitData();
+    // 获取历史记录
+    this.getSearchHistory();
   },
 
   // 获取初始化数据
@@ -28,6 +31,16 @@ Page({
       placeholderContent: placeholderData.data.showKeyword,
       hotList: hotListData.data
     })
+  },
+
+  // 获取本地搜索历史记录
+  getSearchHistory() {
+    let historyList = wx.getStorageSync('searchHistory');
+    if(historyList) {
+      this.setData({
+        historyList
+      })
+    }
   },
 
   // 表单项内容发生改变
@@ -45,7 +58,7 @@ Page({
     // 函数节流
     setTimeout(() => {
       isSend = false
-    }, 300);
+    }, 100);
   },
 
   // 获取搜索数据的功能函数
@@ -56,12 +69,41 @@ Page({
       })
       return;
     }
-    let searchListData = await request('/search', {keywords: this.data.searchContent, limit: 10});
+    let {searchContent, historyList} = this.data;
+    let searchListData = await request('/search', {keywords: searchContent, limit: 10});
+    if(historyList.indexOf(searchContent) !== -1) {
+      historyList.splice(historyList.indexOf(searchContent), 1)
+    }
+    historyList.unshift(searchContent)
     this.setData({
-      searchList: searchListData.result.songs
+      searchList: searchListData.result.songs,
+      historyList
+    })
+    wx,wx.setStorageSync('searchHistory', historyList)
+  },
+
+  // 清空搜索内容
+  clearSearchContent() {
+    this.setData({
+      searchContent: '',
+      searchList: []
     })
   },
 
+  // 删除搜索历史记录
+  deleteSearchHistory() {
+    wx.showModal({
+      content: '确认删除吗',
+      success: (res) => {
+        if(res.confirm) {
+          this.setData({
+            historyList: []
+          })
+          wx.removeStorageSync('searchHistory');
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

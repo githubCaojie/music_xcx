@@ -1,29 +1,44 @@
-/* pages/recommendSong/recommendSong.wxss */
-.recommendSongContainer .header {
-  width: 100%;
-  height: 300rpx;
+/* pages/recommendContainer/recommendContainer.wxss */
+.header {
+  display: flex;
+  padding: 20rpx;
   position: relative;
 }
-.recommendSongContainer .header image {
+.header .bg {
   width: 100%;
   height: 100%;
+  position: absolute;
+  z-index: -1;
+  background-size: 200%;
+  background-position: top center;
+  filter: blur(25rpx);
+  transform: scale(1.2);
 }
-.recommendSongContainer .header .date {
-  position: absolute;    
-  left: 20rpx;
-  bottom: 20rpx;
+.header .recommentImg {
+  width: 240rpx;
+  height: 240rpx;
+  border-radius: 15rpx;
+  flex-shrink: 0;
+}
+.header .recommentContent {
+  display: flex;
+  flex-flow: wrap;
+  align-items: center;
+  align-content: center;
+  justify-content: space-between;
+}
+.recommentContent text {
+  width: 100%;
+  margin: 10rpx 20rpx;
   color: #fff;
-  font-size: 30rpx;
+  font-size: 28rpx;
 }
-.recommendSongContainer .header .date .day {
-  font-size: 70rpx;
+.recommentContent text.name {
+  color: #c7cac8;
+  font-size: 26rpx;
+}
+/* 列表 */
 
-}
-
-/* 列表区域 */
-.listScroll {
-  height: calc(100vh - 380rpx);
-}
 .listContainer {
   position: relative;
   top: -20rpx;
@@ -37,6 +52,9 @@
 }
 .listHeader .changeMore {
   float: right;
+}
+.listScroll {
+  height: calc(100vh - 360rpx);
 }
 .scrollItem {
   display: flex;
@@ -52,7 +70,7 @@
   flex-direction: column;
   margin-left: 20rpx;
 }
-.musicInfo .author, .musicInfo .musicName {
+.musicInfo text {
   max-width: 500rpx;
   height: 40rpx;
   line-height: 40rpx;
@@ -63,13 +81,6 @@
 }
 .musicInfo .author {
   color: #828282;
-}
-.musicInfo .musicName text {
-  background: #ffdce0;
-  font-size: 20rpx;
-  color: #cd5266;
-  padding: 2rpx 10rpx;
-  border-radius: 3rpx;
 }
 .scrollItem .iconfont {
   position: absolute;

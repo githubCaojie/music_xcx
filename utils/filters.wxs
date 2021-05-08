@@ -1,0 +1,15 @@
+var filters = {
+  numTransform: function(n) {
+    if (Math.abs(n) >= 100000000) {
+      n = (n / 100000000).toFixed(1) + '亿'
+    } else if (Math.abs(n) >= 10000) {
+      n = (n / 10000).toFixed(0) + '万'
+    }
+    // 给数据加上千分号
+    return n.toString().replace('/(\d)(?=(\d{3})+\.)/g', '$1,')
+  }
+}
+
+module.exports = {
+  toFix: filters.numTransform
+}

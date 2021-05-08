@@ -32,8 +32,8 @@ Page({
     }
     // 更新日期
     this.setData({
-      day: new Date().getDate(),
-      month: new Date().getMonth() + 1
+      day: this.appendzero(new Date().getDate()),
+      month: this.appendzero(new Date().getMonth() + 1)
     })
 
     this.getRecommendList();
@@ -58,12 +58,26 @@ Page({
       PubSub.publish('musicId', musicId)
     });
   },
+  // 日期不足两位补0
+  appendzero(d) {
+    if(d < 10) return '0' + d;
+    else return d
+  },
 
   // 获取每日推荐数据
   async getRecommendList() {
+    let recommendList = [];
     let recommendListData = await request('/recommend/songs');
+    for (let i in recommendListData.data.dailySongs) {
+      recommendList.push(recommendListData.data.dailySongs[i])
+      for(let r in recommendListData.data.recommendReasons) {
+        if(recommendListData.data.dailySongs[i].id === recommendListData.data.recommendReasons[r].songId){
+          recommendList[i].recommendReasons = recommendListData.data.recommendReasons[r].reason
+        }
+      }
+    }
     this.setData({
-      recommendList: recommendListData.data.dailySongs
+      recommendList
     })
   },
 

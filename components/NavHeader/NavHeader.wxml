@@ -2,7 +2,7 @@
 <view class="header">
   <view class="title">{{title}}</view>
   <view class="more">
-    更多
+    {{rightText}}
     <text class="iconfont icon-gengduo"></text>
   </view>
 </view>
