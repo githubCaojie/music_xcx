@@ -47,7 +47,7 @@ Page({
     })
     // 音乐播放自然结束
     this.backgroundAudioManager.onEnded(()=>{
-      // 自动切歌播放
+      // 切歌播放
       PubSub.publish('switchMusic','next');
       this.setData({
         currentWidth: 0,

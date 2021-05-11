@@ -91,6 +91,13 @@ Page({
     })
   },
 
+  toSongDetailAll() {
+    let songId = this.data.recommendList[0].id
+    wx.navigateTo({
+      url: '/pages/songDetail/songDetail?musicId=' + songId,
+    })
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

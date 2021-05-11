@@ -9,7 +9,6 @@ Page({
     videoGroupList: [],//导航标签
     navId: '',//导航标识
     videoList: [],//视频
-    videoId: '',//视频id标识
     videoUpdateTime: [],//记录播放时长
     isTriggered: false,//表示下拉刷新
   },
@@ -75,60 +74,6 @@ Page({
     })
   },
 
-  //点击播放回调
-  handlePlay(event){
-    //播放新视频之前找到上一个正在播放的视频并关闭
-    let vid = event.currentTarget.id;
-    //怎样关闭上一个视频？找到上一个视频的实例
-    //如何确认点击播放的视频与正在播放的视频不是同一个(通过vid的对比)
-    //this.vid !==vid && this.videoContext && this.videoContext.stop();
-    
-    //this.vid = vid;
-
-    this.setData({
-      videoId: vid
-    })
-
-    //创建控制video的实例对象
-    this.videoContext = wx.createVideoContext(vid);
-    //判断当前的视频是否播放过，有播放记录，有则跳转到之上次播放的位置
-    let {videoUpdateTime} = this.data;
-    let videoItem = videoUpdateTime.find(item => item.vid === vid);
-    if(videoItem){
-      this.videoContext.seek(videoItem.currentTime);
-    }
-
-    //this.videoContext.play();
-  },
-
-  //监听视频播放进度
-  handleTimeUpdate(event){
-    let videoTimeObj = {vid: event.currentTarget.id, currentTime: event.detail.currentTime};
-    let {videoUpdateTime} = this.data;
-
-    let videoItem = videoUpdateTime.find(item => item.vid === videoTimeObj.vid);
-    //如果数组中有当前视频对应的时间就更新，没有则添加
-    if(videoItem){
-      videoItem.currentTime = videoTimeObj.currentTime;
-    }else{
-      videoUpdateTime.push(videoTimeObj);
-    }
-    //更新
-    this.setData({
-      videoUpdateTime: videoUpdateTime
-    })
-  },
-
-  //视频播放结束调用
-  handleEnded(event){
-    //移除播放时长数组中以结束的视频
-    let {videoUpdateTime} = this.data;
-    
-    videoUpdateTime.splice(videoUpdateTime.findIndex(item => item.vid === event.currentTarget.id),1);
-    this.setData({
-      videoUpdateTime: videoUpdateTime
-    })
-  },
   //自定义下拉刷新
   handleRefresher(){
     this.getVideoList(this.data.navId);

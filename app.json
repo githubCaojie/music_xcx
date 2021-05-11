@@ -12,7 +12,7 @@
   "window": {
     "navigationBarBackgroundColor": "#d43c33",
     "navigationBarTextStyle": "white",
-    "navigationBarTitleText": "网易云音乐"
+    "navigationBarTitleText": "小云音乐"
   },
   "tabBar": {
     "color": "#b3b3b3",
@@ -24,12 +24,6 @@
         "text": "发现",
         "iconPath": "/static/images/tabs/tab-home.png",
         "selectedIconPath": "/static/images/tabs/tab-home-current.png"
-      },
-      {
-        "pagePath": "pages/video/video",
-        "text": "播客",
-        "iconPath": "/static/images/tabs/select.png",
-        "selectedIconPath": "/static/images/tabs/tab-select-current.png"
       },
       {
         "pagePath": "pages/personal/personal",
@@ -44,7 +38,7 @@
         "selectedIconPath": "/static/images/tabs/tab-singing-current.png"
       },
       {
-        "pagePath": "pages/personal/personal",
+        "pagePath": "pages/video/video",
         "text": "云村",
         "iconPath": "/static/images/tabs/village.png",
         "selectedIconPath": "/static/images/tabs/tab-village-current.png"

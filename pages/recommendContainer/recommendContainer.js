@@ -1,4 +1,5 @@
 // pages/recommendContainer/recommendContainer.js
+import PubSub from 'pubsub-js'
 import request from '../../utils/request'
 Page({
 
@@ -8,6 +9,7 @@ Page({
   data: {
     recommendContainerDetail: [], // 歌单信息
     songUserDetail: [], //歌单用户信息
+    index: 0
   },
 
   /**
@@ -19,6 +21,38 @@ Page({
     let recommendContainer = await request('/playlist/detail', {id});
     this.setData({
       recommendContainerDetail: recommendContainer.playlist,
+      recommendList: recommendContainer.playlist.tracks
+    })
+    
+
+    // 定于来时songDetail页面发送的消息
+    PubSub.subscribe('switchType', (msg, type) => {
+      let {recommendList, index} = this.data;
+      if(type === 'pre') {
+        (index === 0) && (index = recommendList.length)
+        index -= 1;
+      }else {
+        (index === recommendList.length -1) && (index = -1)
+        index += 1
+      }
+      // 更新下标
+      this.setData({
+        index
+      })
+      let musicId = recommendList[index].id;
+
+      // 将id回传到detail页面
+      PubSub.publish('musicId', musicId)
+    });
+  },
+  
+  toSongDetail(event) {
+    let {song, index} = event.currentTarget.dataset;
+    this.setData({
+      index
+    })
+    wx.navigateTo({
+      url: '/pages/songDetail/songDetail?musicId=' + song.id,
     })
   },
 

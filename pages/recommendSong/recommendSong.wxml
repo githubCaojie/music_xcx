@@ -12,22 +12,31 @@
    <!-- 列表 -->
    <view class="listContainer">
      <view class="listHeader">
-       <text>播放全部</text>
-       <text class="changeMore">多选</text>
+        <botton bindtap="toSongDetailAll">
+          <text class="iconfont icon-bofang1"></text>
+          播放全部
+        </botton>
      </view>
      <!-- 内容 -->
      <scroll-view scroll-y class="listScroll">
-       <view class="scrollItem" wx:for="{{recommendList}}" wx:key="id" data-index="{{index}}" data-song="{{item}}" bindtap="toSongDetail">
-         <image src="{{item.al.picUrl}}"></image>
-         <view class="musicInfo">
-           <view class="musicName">
-             {{item.name}}
-             <text wx:if="{{item.recommendReasons}}">{{item.recommendReasons}}</text>
-            </view>
-           <text class="author">{{item.ar[0].name}} - {{item.al.name}}</text>
-         </view>
-         <text class="iconfont icon-bofang1"></text>
-       </view>
-     </scroll-view>
-   </view>
+       <view
+        class="scrollItem"
+        wx:for="{{recommendList}}"
+        wx:key="id"
+        data-index="{{index}}"
+        data-song="{{item}}"
+        bindtap="toSongDetail"
+      >
+        <image src="{{item.al.picUrl}}"></image>
+        <view class="musicInfo">
+          <view class="musicName">
+            {{item.name}}
+            <text wx:if="{{item.recommendReasons}}">{{item.recommendReasons}}</text>
+          </view>
+          <text class="author">{{item.ar[0].name}} - {{item.al.name}}</text>
+        </view>
+        <text class="iconfont icon-bofang1"></text>
+      </view>
+    </scroll-view>
+  </view>
 </view>

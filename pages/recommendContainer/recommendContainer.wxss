@@ -26,10 +26,11 @@
   align-items: center;
   align-content: center;
   justify-content: space-between;
+  margin: 0 20rpx;
 }
 .recommentContent text {
   width: 100%;
-  margin: 10rpx 20rpx;
+  margin: 10rpx 0;
   color: #fff;
   font-size: 28rpx;
 }
@@ -37,11 +38,38 @@
   color: #c7cac8;
   font-size: 26rpx;
 }
+.recommentContent .btn {
+  display: flex;
+  background: #fff;
+  border-radius: 20rpx;
+  margin: 10rpx 0;
+}
+.recommentContent .btn button {
+  font-size: 26rpx;
+  background: transparent;
+  position: relative;
+}
+.recommentContent .btn button:first-child::before{
+  display: none;
+}
+.recommentContent .btn button::before {
+  content: "";
+  width: 1rpx;
+  position: absolute;
+  height: 60%;
+  background: #dfdfdf;
+  top: 20%;
+  left: 0;
+}
+.recommentContent .btn button::after {
+  border: 0;
+}
+.recommentContent .btn button .iconfont {
+  color: #000;
+}
 /* 列表 */
-
 .listContainer {
   position: relative;
-  top: -20rpx;
   padding: 0 20rpx;
   border-radius: 30rpx;
   background: #ffffff;

@@ -6,6 +6,16 @@
     <view class="recommentContent">
       <text class="tiele">{{recommendContainerDetail.name}}</text>
       <text class="name">{{recommendContainerDetail.creator.nickname}}</text>
+      <view class="btn">
+        <button size="mini">
+          <text class="iconfont icon-xin {{recommendContainerDetail.subscribed?'icon-xin':'icon-xin1'}}"></text>
+          {{recommendContainerDetail.subscribedCount}}
+        </button>
+        <button size="mini">
+          <text class="iconfont icon-pinglun"></text>
+          {{recommendContainerDetail.commentCount}}
+        </button>
+      </view>
     </view>
   </view>
   
@@ -17,7 +27,14 @@
      </view>
      <!-- 内容 -->
      <scroll-view scroll-y class="listScroll">
-      <view class="scrollItem" wx:for="{{recommendContainerDetail.tracks}}" wx:key="item.id">
+      <view
+        class="scrollItem"
+        wx:for="{{recommendList}}"
+        wx:key="item.id"
+        data-index="{{index}}"
+        data-song="{{item}}"
+        bindtap="toSongDetail"
+      >
         <image src="{{item.al.picUrl}}"></image>
         <view class="musicInfo">
           <text class="musicName">{{item.name}}</text>
